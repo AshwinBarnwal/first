@@ -1,8 +1,8 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
   <img src="https://play.tailwindcss.com/img/beams.jpg" alt="" className="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
   <div className="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
@@ -41,6 +41,7 @@ export default function Home() {
               <p className="ml-4">Code completion with instant preview</p>
             </li>
           </ul>
+          <Button variant="default">Button</Button>
           <p>Perfect for learning how the framework works, prototyping a new idea, or creating a demo to share online.</p>
         </div>
         <div className="pt-8 text-base font-semibold leading-7">
@@ -54,6 +55,5 @@ export default function Home() {
     </div>
   </div>
 </div>
-    </main>
   );
 }
