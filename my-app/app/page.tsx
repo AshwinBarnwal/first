@@ -42,7 +42,6 @@ export default function Home() {
             </li>
           </ul>
           <Button variant="default" className="bg-green-500 hover:bg-green-700 mr-4">Hello</Button>
-          <p />
           <ModeToggle />
           <p>Perfect for learning how the framework works, prototyping a new idea, or creating a demo to share online.</p>
         </div>
