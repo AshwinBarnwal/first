@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle";
-import { useTheme } from "next-themes";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeSwitch } from "@/components/mode-switch";
+import { useToast } from "@/components/ui/use-toast"
+import { ToastSimple } from "@/components/toasties";
 
 export default function Home() {
   return (
