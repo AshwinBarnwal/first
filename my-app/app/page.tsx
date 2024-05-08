@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
@@ -41,7 +40,7 @@ export default function Home() {
               <p className="ml-4">Code completion with instant preview</p>
             </li>
           </ul>
-          <Button variant="default">Button</Button>
+          <Button variant="default" className="bg-green-500 hover:bg-green-700">Hello</Button>
           <p>Perfect for learning how the framework works, prototyping a new idea, or creating a demo to share online.</p>
         </div>
         <div className="pt-8 text-base font-semibold leading-7">
