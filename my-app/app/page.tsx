@@ -1,7 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SiteFooter } from "@/components/site-footer";
-
+import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
