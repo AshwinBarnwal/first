@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Theme",
-  description: "Changing themes",
+  title: "Robotics Club",
+  description: "Website for Robotics Club IITK",
 };
 
 export default function RootLayout({
