@@ -1,12 +1,11 @@
 import { SiteHeader } from "@/components/site-header";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { SiteFooter } from "@/components/site-footer";
 import { ProfileForm } from "@/components/lc-form";
 import { Metadata } from 'next'
+ 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Problems',
 }
-
 export default function Home() {
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
