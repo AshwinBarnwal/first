@@ -14,8 +14,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-
-
+import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -32,9 +32,7 @@ export function ProfileForm() {
    
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
-      // Do something with the form values.
-      // ✅ This will be type-safe and validated.
-      console.log(values)
+        redirect(`/problems/${values}`)
     }
 
     return (

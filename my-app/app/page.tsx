@@ -15,7 +15,7 @@ export default function Home() {
       </div>
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="flex flex-col justify-items-end items-center px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:rounded-lg sm:px-10">
-        <ProfileForm/>
+        <ThemeToggle/>
       </div>
       </div>
       <div>
