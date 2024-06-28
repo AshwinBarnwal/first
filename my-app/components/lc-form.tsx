@@ -14,25 +14,31 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { redirect } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
 })
 
 export function ProfileForm() {
-    // 1. Define your form.
+    const router=useRouter()
+    
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
         username: "",
       },
     })
-   
+    
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
-        redirect(`/problems/${values}`)
+      const num: number= Number(values.username)
+      if (!(isNaN(num))){
+        if (num>0){
+          router.push(`/problems/${num}`);
+        }
+      }
+      
     }
 
     return (
