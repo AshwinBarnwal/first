@@ -1,11 +1,8 @@
 'use client'
 
-import { Metadata } from 'next'
-import { useParams } from 'next/navigation'
 import {useEffect} from  'react'
 import ExcalidrawWrapper from '@/components/excali'
-import { SiteHeader } from '@/components/site-header'
-import { SiteFooter } from '@/components/site-footer'
+
 export default function Page({ params }: { params: { id: string } }) {
   useEffect(() => {
     // Change the document title when the component mounts
@@ -18,16 +15,10 @@ export default function Page({ params }: { params: { id: string } }) {
   }, []);
     return (
       <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div>Hello {params.id}</div>
     <div>
-      <SiteHeader/>
+    <ExcalidrawWrapper id={params.id}/>
     </div>
-    <div>
-    Hello {params.id}
-    <ExcalidrawWrapper/>
-    </div>
-    <div>
-        <SiteFooter/>
-      </div>
     </div>
     )
   }

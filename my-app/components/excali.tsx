@@ -1,7 +1,14 @@
 "use client";
-import { Excalidraw, convertToExcalidrawElements } from "@excalidraw/excalidraw";
+import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw";
+import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
+import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
+import { GetStaticProps } from "next";
 
-const ExcalidrawWrapper: React.FC = () => {
+interface ExcaliProps {
+  id: string;
+}
+
+const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
   console.info(convertToExcalidrawElements([{
     type: "rectangle",
           version: 141,
@@ -21,11 +28,45 @@ const ExcalidrawWrapper: React.FC = () => {
           height: 141.9765625,
           seed: 1968410350,
           groupIds: [],},]));
+  
+
+  const onchange = (
+    elements : readonly ExcalidrawElement[], 
+    appState: AppState,
+    files: BinaryFiles
+  ): void => {
+    console.log("function invoked")
+    const content = serializeAsJSON(elements, appState, files, "local")
+    localStorage.setItem(`excalidraw_${id}`, content)
+  }
+  
+  const retrieveInitialData = () => {
+    const content =localStorage.getItem(`excalidraw_${id}`)
+    if (content!=null) {
+      return JSON.parse(content)
+    }
+    
+  }
+
   return (
 
-    <div style={{height:"100vh", width:"100vw"}}>  
-      <Excalidraw />
+    <div style={{height:"96vh", width:"98.9vw"}}>  
+      <Excalidraw onChange={onchange} initialData={retrieveInitialData()}>
+        <WelcomeScreen>
+          <WelcomeScreen.Hints.HelpHint/>
+        </WelcomeScreen>
+        <MainMenu>
+        <MainMenu.ItemLink href="https://google.com">
+            Google
+          </MainMenu.ItemLink>
+          <MainMenu.ItemLink href="https://excalidraw.com">
+            Excalidraw
+          </MainMenu.ItemLink>
+        </MainMenu>
+      </Excalidraw>
     </div> 
   );
 };
 export default ExcalidrawWrapper;
+
+//style={{height:"100vh", width:"98.9vw"}}
