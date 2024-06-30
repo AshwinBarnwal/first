@@ -2,8 +2,9 @@
 import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw";
 import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
 import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
-import { GetStaticProps } from "next";
+import { useEffect, useRef } from "react";
 
+type Timer = ReturnType<typeof setTimeout>;
 interface ExcaliProps {
   id: string;
 }
@@ -48,10 +49,21 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
     
   }
 
+  function debounce<T extends (...args: any[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void {
+    let timeoutId: ReturnType<typeof setTimeout>;
+  
+    return (...args: Parameters<T>) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func(...args), delay);
+    };
+  }
+
+  const debouncedonchange = debounce(onchange, 1000);
+
   return (
 
     <div style={{height:"96vh", width:"98.9vw"}}>  
-      <Excalidraw onChange={onchange} initialData={retrieveInitialData()}>
+      <Excalidraw onChange={debouncedonchange} initialData={retrieveInitialData()}>
         <WelcomeScreen>
           <WelcomeScreen.Hints.HelpHint/>
         </WelcomeScreen>
