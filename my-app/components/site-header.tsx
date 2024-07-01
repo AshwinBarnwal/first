@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "./ui/button"
 import { ModeSwitch } from "@/components/mode-switch";
 

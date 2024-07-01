@@ -3,6 +3,7 @@ import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, seria
 import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
 import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { getSceneVersion } from "@excalidraw/excalidraw";
 import './vals.css'
 type Timer = ReturnType<typeof setTimeout>;
@@ -67,7 +68,7 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
 
   return (
 
-    <div className="custom-height">  
+    <div className="custom-height custom-styles">  
       <Excalidraw onChange={debouncedonchange} initialData={retrieveInitialData()}>
       <WelcomeScreen>
           <WelcomeScreen.Center>
@@ -84,21 +85,11 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
           </WelcomeScreen.Center>
         </WelcomeScreen>
         <MainMenu>
-          <MainMenu.Group title="Excalidraw">
             <MainMenu.DefaultItems.Socials />
             <MainMenu.DefaultItems.Export />
             <MainMenu.DefaultItems.ClearCanvas />
             <MainMenu.DefaultItems.ToggleTheme />
             <MainMenu.DefaultItems.ChangeCanvasBackground />
-          </MainMenu.Group>
-          <MainMenu.Group title="Other">
-          <MainMenu.Item onSelect={() => window.alert("Item1")}>
-              Item1
-            </MainMenu.Item>
-            <MainMenu.Item onSelect={() => window.alert("Item2")}>
-              Item 2
-            </MainMenu.Item>
-          </MainMenu.Group>
         </MainMenu>
       </Excalidraw>
     </div> 
