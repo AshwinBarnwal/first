@@ -4,7 +4,7 @@ import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
 import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
 import { useEffect, useRef } from "react";
 import { getSceneVersion } from "@excalidraw/excalidraw";
-
+import './vals.css'
 type Timer = ReturnType<typeof setTimeout>;
 interface ExcaliProps {
   id: string;
@@ -41,7 +41,6 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
   ): void => {
     if (getSceneVersion(elements)!=ver){
     ver=getSceneVersion(elements)
-    console.log(ver)
       const content = serializeAsJSON(elements, appState, files, "local")
     localStorage.setItem(`excalidraw_${id}`, content)
     }
@@ -68,18 +67,38 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
 
   return (
 
-    <div style={{height:"96vh", width:"98.9vw"}}>  
+    <div className="custom-height">  
       <Excalidraw onChange={debouncedonchange} initialData={retrieveInitialData()}>
-        <WelcomeScreen>
-          <WelcomeScreen.Hints.HelpHint/>
+      <WelcomeScreen>
+          <WelcomeScreen.Center>
+            <WelcomeScreen.Center.Logo />
+            <WelcomeScreen.Center.Heading>
+              Welcome {id}!
+            </WelcomeScreen.Center.Heading>
+            <WelcomeScreen.Center.Menu>
+              <WelcomeScreen.Center.MenuItemLink href="https://github.com/excalidraw/excalidraw">
+                Excalidraw GitHub
+              </WelcomeScreen.Center.MenuItemLink>
+              <WelcomeScreen.Center.MenuItemHelp />
+            </WelcomeScreen.Center.Menu>
+          </WelcomeScreen.Center>
         </WelcomeScreen>
         <MainMenu>
-        <MainMenu.ItemLink href="https://google.com">
-            Google
-          </MainMenu.ItemLink>
-          <MainMenu.ItemLink href="https://excalidraw.com">
-            Excalidraw
-          </MainMenu.ItemLink>
+          <MainMenu.Group title="Excalidraw">
+            <MainMenu.DefaultItems.Socials />
+            <MainMenu.DefaultItems.Export />
+            <MainMenu.DefaultItems.ClearCanvas />
+            <MainMenu.DefaultItems.ToggleTheme />
+            <MainMenu.DefaultItems.ChangeCanvasBackground />
+          </MainMenu.Group>
+          <MainMenu.Group title="Other">
+          <MainMenu.Item onSelect={() => window.alert("Item1")}>
+              Item1
+            </MainMenu.Item>
+            <MainMenu.Item onSelect={() => window.alert("Item2")}>
+              Item 2
+            </MainMenu.Item>
+          </MainMenu.Group>
         </MainMenu>
       </Excalidraw>
     </div> 

@@ -1,5 +1,5 @@
 'use client'
-
+import './vals.css'
 import {useEffect} from  'react'
 import ExcalidrawWrapper from '@/components/excali'
 
@@ -14,11 +14,13 @@ export default function Page({ params }: { params: { id: string } }) {
     };
   }, []);
     return (
-      <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-    <div>Hello {params.id}</div>
-    <div className="z-50">
+    <div className="custom-height flex flex-col">
+    
+    <div className="z-40 custom-height">
     <ExcalidrawWrapper id={params.id}/>
     </div>
     </div>
     )
   }
+
+  //className="h-screen flex-col"
