@@ -5,7 +5,7 @@ export function SiteFooter() {
           <p className="text-balance text-left text-sm leading-loose text-muted-foreground md:text-left">
             Built by{" "}
             <a
-              href="about:blank"
+              href="https://github.com/AshwinBarnwal"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"

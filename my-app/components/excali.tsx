@@ -3,11 +3,14 @@ import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, seria
 import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
 import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
 import { useEffect, useRef } from "react";
+import { getSceneVersion } from "@excalidraw/excalidraw";
 
 type Timer = ReturnType<typeof setTimeout>;
 interface ExcaliProps {
   id: string;
 }
+
+let ver=0;
 
 const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
   console.info(convertToExcalidrawElements([{
@@ -36,9 +39,12 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
     appState: AppState,
     files: BinaryFiles
   ): void => {
-    console.log("function invoked")
-    const content = serializeAsJSON(elements, appState, files, "local")
+    if (getSceneVersion(elements)!=ver){
+    ver=getSceneVersion(elements)
+    console.log(ver)
+      const content = serializeAsJSON(elements, appState, files, "local")
     localStorage.setItem(`excalidraw_${id}`, content)
+    }
   }
   
   const retrieveInitialData = () => {
