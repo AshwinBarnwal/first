@@ -3,7 +3,7 @@
 import * as React from "react"
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { useTheme } from "next-themes"
-
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -16,6 +16,6 @@ export function ThemeToggle() {
   const { setTheme } = useTheme()
 
   return (
-    <Button>Theme</Button>
+    <Link href="/problems"><Button>Problems</Button></Link>
   )
 }
