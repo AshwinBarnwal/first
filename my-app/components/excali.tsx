@@ -5,6 +5,7 @@ import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { getSceneVersion } from "@excalidraw/excalidraw";
+import { writedoc, readdoc } from "@/lib/firebase/crud";
 import './vals.css'
 type Timer = ReturnType<typeof setTimeout>;
 interface ExcaliProps {
@@ -43,16 +44,23 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
     if (getSceneVersion(elements)!=ver){
     ver=getSceneVersion(elements)
       const content = serializeAsJSON(elements, appState, files, "local")
-    localStorage.setItem(`excalidraw_${id}`, content)
+      //localStorage.setItem(`excalidraw_${id}`, content)
+      writedoc(id,content)
     }
   }
   
-  const retrieveInitialData = () => {
-    const content =localStorage.getItem(`excalidraw_${id}`)
-    if (content!=null) {
+  const retrieveInitialData = async () => {
+    //const content =localStorage.getItem(`excalidraw_${id}`)
+    try{
+    const content=await readdoc(id)
+    if (content!=null && content!=undefined) {
+      console.log("loaded successfully")
       return JSON.parse(content)
     }
-    
+  }
+  catch(error){
+    console.log(error)
+  }
   }
 
   function debounce<T extends (...args: any[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void {
