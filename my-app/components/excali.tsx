@@ -10,11 +10,13 @@ import './vals.css'
 type Timer = ReturnType<typeof setTimeout>;
 interface ExcaliProps {
   id: string;
+  setIsBoxVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isBoxVisible: boolean
 }
 
 let ver=0;
 
-const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
+const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123", setIsBoxVisible,isBoxVisible}) => {
   console.info(convertToExcalidrawElements([{
     type: "rectangle",
           version: 141,
@@ -83,6 +85,7 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
             <WelcomeScreen.Center.Logo />
             <WelcomeScreen.Center.Heading>
               Welcome {id}!
+              Open the problem from main menu
             </WelcomeScreen.Center.Heading>
             <WelcomeScreen.Center.Menu>
               <WelcomeScreen.Center.MenuItemLink href="https://github.com/excalidraw/excalidraw">
@@ -97,6 +100,9 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123"}) => {
             <MainMenu.DefaultItems.Export />
             <MainMenu.DefaultItems.ClearCanvas />
             <MainMenu.DefaultItems.ToggleTheme />
+            <MainMenu.Item onSelect={() => setIsBoxVisible(!isBoxVisible)}>
+            {isBoxVisible? "Close": "Open"} Problem
+            </MainMenu.Item>
             <MainMenu.DefaultItems.ChangeCanvasBackground />
         </MainMenu>
       </Excalidraw>

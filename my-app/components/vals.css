@@ -15,3 +15,8 @@
     --color-primary-darkest: #e86e99;
     --color-primary-light: #dcbec9;
   }
+
+.bg-custom {
+    --tw-bg-opacity: 1;
+    background-color: rgb(21 34 56);
+}
