@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import ExcalidrawWrapper from '@/components/excali';
 import ProblemComponent from '@/components/ProblemComponent'; // Adjust the path based on your project structure
 import { ProblemData } from '../../../components/interfaces'; // Adjust the path based on your project structure
-import { SessionProvider } from "next-auth/react";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [isBoxVisible, setIsBoxVisible] = useState(true);
@@ -50,9 +49,7 @@ export default function Page({ params }: { params: { id: string } }) {
           </div>
         )}
         <div className={isBoxVisible ? "flex-[0_0_67%]" : "flex-1"}>
-          <SessionProvider>
             <ExcalidrawWrapper id={params.id} setIsBoxVisible={setIsBoxVisible} isBoxVisible={isBoxVisible} />
-          </SessionProvider>
         </div>
       </div>
     </div>

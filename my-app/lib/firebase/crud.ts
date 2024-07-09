@@ -1,8 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, getDoc, addDoc ,doc, updateDoc} from 'firebase/firestore/lite';
-import firebase from "firebase/compat/app";
+import { getFirestore, getDoc ,doc, updateDoc} from 'firebase/firestore/lite';
 // Required for side-effects
 import "firebase/firestore";
 

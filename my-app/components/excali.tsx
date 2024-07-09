@@ -2,8 +2,6 @@
 import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw";
 import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
 import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
-import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { getSceneVersion } from "@excalidraw/excalidraw";
 import { writedoc, readdoc } from "@/lib/firebase/crud";
 import './vals.css'
