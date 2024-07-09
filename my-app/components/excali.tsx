@@ -82,7 +82,6 @@ const ExcalidrawWrapper: React.FC<ExcaliProps> = ({id = "123", setIsBoxVisible,i
           <WelcomeScreen.Center>
             <WelcomeScreen.Center.Logo />
             <WelcomeScreen.Center.Heading>
-              Welcome {id}!
               Open the problem from main menu
             </WelcomeScreen.Center.Heading>
             <WelcomeScreen.Center.Menu>
