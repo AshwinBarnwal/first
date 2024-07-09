@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  problem: z.string().min(2).max(50),
 })
 
 export function ProfileForm() {
@@ -26,18 +26,14 @@ export function ProfileForm() {
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        username: "",
+        problem: "",
       },
     })
     
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
-      const num: number= Number(values.username)
-      if (!(isNaN(num))){
-        if (num>0){
+      const num: string= String(values.problem)
           router.push(`/problems/${num}`);
-        }
-      }
       
     }
 
@@ -46,12 +42,12 @@ export function ProfileForm() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
-              name="username"
+              name="problem"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Problem ID</FormLabel>
+                  <FormLabel>Problem</FormLabel>
                   <FormControl>
-                    <Input placeholder="123" {...field} />
+                    <Input placeholder="trapping-rain-water" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
