@@ -1,14 +1,16 @@
 "use client"
-
-import {writedoc, readdoc} from '@/lib/firebase/crud';
-import { Button } from '@/components/ui/button';
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { signOut,useSession } from "next-auth/react";
 
 export default function Home() {
+  const session=useSession()
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-     hi hlep
-     <Button onClick={()=>writedoc("321","whynot")}>bananas</Button>
-     <Button onClick={()=>readdoc("321")}>get banana :D</Button> 
-    </div>
+    <>
+    <SiteHeader/>
+      <div>{session?.data?.user?.name}</div>
+      <button onClick={()=>signOut()}>Logout</button>
+      <SiteFooter/>
+    </>
   );
 }

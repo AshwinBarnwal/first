@@ -16,6 +16,10 @@ export function ThemeToggle() {
   const { setTheme } = useTheme()
 
   return (
-    <Link href="/problems"><Button>Problems</Button></Link>
+    <>
+    <div className="py-4">Login to save your work</div>
+    
+    <div><Link href="/problems"><Button>Problems</Button></Link></div>
+    </>
   )
 }

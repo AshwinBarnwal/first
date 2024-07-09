@@ -1,11 +1,11 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, getDoc, addDoc ,doc, updateDoc} from 'firebase/firestore/lite';
+import { getFirestore, collection, getDoc, addDoc ,doc, setDoc} from 'firebase/firestore/lite';
 import firebase from "firebase/compat/app";
 // Required for side-effects
 import "firebase/firestore";
-
+import { getServerSession } from "next-auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,17 +22,16 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = getApps().length ? getApp(): initializeApp(firebaseConfig)
 const db=getFirestore(app)
 
-
-export async function writedoc(num: string, content:string){
+export async function writedoc(num: string, content:string, email:string){
     const writer=doc(db, `users/id`)
     const docdata={
         [num]:content
     }
     try{
-        await updateDoc(writer,docdata)
+        await setDoc(writer,docdata, {merge: true})
         console.log("saved successfully")
     }
     catch(error){
@@ -40,12 +39,12 @@ export async function writedoc(num: string, content:string){
     }
 }
 
-export async function readdoc(val: string){
-    const writer=doc(db, 'users/id')
+export async function readdoc(val: string, email:string){
+    const writer=doc(db, `users/id`)
     const docload= await getDoc(writer)
     if (docload.exists()){
         const docData=docload.data();
-        //console.log(docData[val])
+        console.log(docData[val])
         return (docData[val])
     }
     return undefined;
