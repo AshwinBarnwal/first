@@ -32,9 +32,12 @@ export function ProfileForm() {
     
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
-      const id: string= String(values.username)
-
-          router.push(`/problems/${id}`);
+      const num: number= Number(values.username)
+      if (!(isNaN(num))){
+        if (num>0){
+          router.push(`/problems/${num}`);
+        }
+      }
       
     }
 
@@ -46,9 +49,9 @@ export function ProfileForm() {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Problem</FormLabel>
+                  <FormLabel>Problem ID</FormLabel>
                   <FormControl>
-                    <Input placeholder="trapping-rain-water" {...field} />
+                    <Input placeholder="123" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
